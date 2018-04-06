@@ -3,6 +3,7 @@ package waveedit.gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
 
 public class SwingGUIController implements IGuiController {
 
@@ -19,6 +20,9 @@ public class SwingGUIController implements IGuiController {
 		frame.getContentPane().setBackground(new Color(150, 130, 80));
 
 		frame.setVisible(true);
+		frame.addWindowListener(new WindowAdapter(){
+		    
+		});
 	}
 
 }
