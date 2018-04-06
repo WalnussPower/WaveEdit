@@ -6,5 +6,5 @@ package waveedit.gui;
  * 
  */
 public interface IGuiController {
-    public void initialize();
+	public void initialize();
 }
