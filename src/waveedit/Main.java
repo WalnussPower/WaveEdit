@@ -15,6 +15,7 @@ public class Main {
         IGuiController gui = new SwingGUIController();// TODO GUI-Klasse implementieren und hier
                                   // instanziieren
         gui.initialize();
+        
     }
 
 }

@@ -17,7 +17,7 @@ public class SwingGUIController implements IGuiController {
 
     @Override
     public void initialize() {
-        // Fenster Ã¶ffnen
+        // Fenster öffnen
         frame.setTitle("WaveEdit");
         frame.setSize(800, 600);
         // TODO Hintergrund zeichnen
@@ -31,7 +31,7 @@ public class SwingGUIController implements IGuiController {
         // TODO Karte zeichnen
         map = new SwingGUIMap();
         frame.getContentPane().add(map);
-        // TODO MenÃ¼ zeichnen
+        // TODO Menü zeichnen
     }
 
     // protected void paint() {
