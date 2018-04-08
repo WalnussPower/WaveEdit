@@ -18,10 +18,12 @@ public class SwingGUIController implements IGuiController {
 	public void initialize() {
 		// TODO open Frame
 		frame.setTitle("WaveEdit");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 600);
 		// TODO Draw Background
 		frame.setResizable(false);
 		frame.setVisible(true);
+		
 
 		frame.addWindowListener(new WindowAdapter() {
 
