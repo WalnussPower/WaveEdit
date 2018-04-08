@@ -33,12 +33,6 @@ public class SwingGUIController implements IGuiController {
 		// TODO Menü zeichnen
 	}
 
-	// protected void paint() {
-	// super.paintComponent(g);
-	// g.setColor (Color.red);
-	// g.fillRect(500,400,50,50);
-	//
-	//
-	// }
+
 
 }

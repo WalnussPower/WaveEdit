@@ -4,19 +4,24 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-
+import javax.swing.JLayeredPane;
 public class SwingGUIMap extends JPanel {
 	//TODO draw GUI
 	SwingGUIController ctrl;
 	SwingGUIMap map;
 	Graphics g;
-
+	JLayeredPane glassPane = new JLayeredPane();
 	private static final long serialVersionUID = 1922691013005376966L;
-
+	
+	
+	
 	public SwingGUIMap() {
 
+
+		
+		
 		JButton Save = new JButton("SAVE");
-		JButton EMPTY = new JButton("Empty");
+		JButton Tile = new JButton("Tile");
 		JButton Wall = new JButton("Wall");
 		JButton Nexus = new JButton("Nexus");
 		JButton Delete = new JButton("Delete");
@@ -27,10 +32,10 @@ public class SwingGUIMap extends JPanel {
 		Save.setVisible(true);
 		add(Save);
 
-		EMPTY.setBounds(675, 60, 90, 30);
+		Tile.setBounds(675, 60, 90, 30);
 		setBounds(0, 0, 800, 600);
-		EMPTY.setVisible(true);
-		add(EMPTY);
+		Tile.setVisible(true);
+		add(Tile);
 		
 		Wall.setBounds(675, 100, 90, 30);
 		setBounds(0, 0, 800, 600);
@@ -46,6 +51,8 @@ public class SwingGUIMap extends JPanel {
 		setBounds(0, 0, 800, 600);
 		Delete.setVisible(true);
 		add(Delete);
+		
+
 
 	}
 
@@ -56,7 +63,7 @@ public class SwingGUIMap extends JPanel {
 		g.fillRect(50, 50, 600, 350);
 		g.fillRect(670, 50, 100, 200);
 
-		// File field
+		// typing field
 		g.setColor(Color.white);
 		g.fillRect(50, 450, 600, 20);
 		// Borders

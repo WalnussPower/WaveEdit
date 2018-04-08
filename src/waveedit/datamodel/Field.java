@@ -12,7 +12,7 @@ public class Field {
     final private int y;
 
     private int kind;
-
+    
     public Field(final int pX, final int pY, final int pKind) {
         x = pX;
         y = pY;
