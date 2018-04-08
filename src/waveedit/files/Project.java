@@ -102,5 +102,13 @@ public abstract class Project {
         file = pFile;
         save();
     }
+    
+    public void setField(final int pCol, final int pRow, final int pKind){
+        gameMap.setField(pCol, pRow, pKind);
+    }
+    
+    public int getField(final int pCol, final int pRow){
+        return gameMap.getField(pCol, pRow).getKind();
+    }
 
 }
