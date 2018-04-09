@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import waveedit.datamodel.Field;
 import waveedit.datamodel.GameMap;
 
-public abstract class Project {
+public class Project {
 
     /**
      * The File in which the current project is and will be saved. This needs to
