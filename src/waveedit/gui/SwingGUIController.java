@@ -20,21 +20,19 @@ public class SwingGUIController implements IGuiController {
 		frame.setTitle("WaveEdit");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 600);
-		// TODO Draw Background
-		frame.setResizable(false);
-		frame.setVisible(true);
 		
+		frame.setResizable(false);
 
 		frame.addWindowListener(new WindowAdapter() {
 
 		});
-		// TODO Karte zeichnen
+		// TODO Draw Background
 		map = new SwingGUIMap();
 
 		frame.getContentPane().add(map);
+		frame.setVisible(true);
+
 		// TODO Menü zeichnen
 	}
-
-
 
 }
