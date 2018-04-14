@@ -47,11 +47,10 @@ public class Project {
         load(pFile);
     }
 
-    private void load(final File pFile)
+    public void load(final File pFile)
             throws FileNotFoundException, IOException {
         file = pFile;
-        try (FileReader fr = new FileReader(file);
-                BufferedReader br = new BufferedReader(fr)) {
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             ArrayList<Field[]> fieldLines = new ArrayList<>();
             String line = br.readLine();
             int x = -1;
@@ -68,15 +67,14 @@ public class Project {
                 if (x < 0) {
                     x = curX;
                 } else if (x != curX) {
-                    throw new IOException("Error while trying to load \"" + file
+                    throw new IOException("Error while trying to load \""
+                            + file.getPath()
                             + "\": The map's horizontal length must be constant!");
                 }
                 fieldLines.add(fieldsInLine.toArray(new Field[x]));
                 line = br.readLine();
             }
             gameMap = new GameMap(x, y, fieldLines.toArray(new Field[y][x]));
-            br.close();
-            fr.close();
         }
     }
 
@@ -91,7 +89,6 @@ public class Project {
                 }
                 bw.newLine();
             }
-            bw.close();
         }
     }
 
@@ -102,12 +99,12 @@ public class Project {
         file = pFile;
         save();
     }
-    
-    public void setField(final int pCol, final int pRow, final int pKind){
+
+    public void setField(final int pCol, final int pRow, final int pKind) {
         gameMap.setField(pCol, pRow, pKind);
     }
-    
-    public int getField(final int pCol, final int pRow){
+
+    public int getField(final int pCol, final int pRow) {
         return gameMap.getField(pCol, pRow).getKind();
     }
 

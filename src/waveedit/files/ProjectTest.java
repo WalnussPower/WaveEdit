@@ -53,8 +53,6 @@ public class ProjectTest extends Project {
                         + level.length + ": ");
                 System.out.println(super.gameMap.getField(col, row) + " == "
                         + level[row][col]);
-                System.out.println(col);
-                System.out.println(row);
                 int expected = level[row][col];
                 int found = super.gameMap.getField(col, row).getKind();
                 assertEquals(expected, found);
