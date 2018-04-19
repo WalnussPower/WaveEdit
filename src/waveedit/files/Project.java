@@ -23,7 +23,7 @@ public class Project {
     /**
      * The field in which the GameMap that is currently being edited will be
      * stored.
-     * 
+     *
      * TODO This field is set to 'protected' access to make testing easier. Set
      * this to 'private' before deployment.
      */
@@ -32,7 +32,7 @@ public class Project {
     /**
      * This Constructor takes a {@link String} that contains a path to the file
      * that is to be loaded
-     * 
+     *
      * @param pFilePath
      *            The filepath
      * @throws FileNotFoundException
@@ -80,15 +80,19 @@ public class Project {
 
     public void save() throws IOException {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-            for (int row = 0; row <= gameMap.getY(); row++) {
-                for (int col = 0; col < gameMap.getX(); col++) {
-                    bw.write(gameMap.getField(col, row).toString());
-                }
-                if (gameMap.getY() == row) {
-                    break;// TODO this could be done more efficiently
-                }
+            int row = 0;
+            writeLine(bw, row);
+            for (row = 1; row <= gameMap.getY(); row++) {
                 bw.newLine();
+                writeLine(bw, row);
             }
+        }
+    }
+
+    private void writeLine(final BufferedWriter bw, final int row)
+            throws IOException {
+        for (int col = 0; col < gameMap.getX(); col++) {
+            bw.write(gameMap.getField(col, row).toString());
         }
     }
 
