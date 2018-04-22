@@ -19,10 +19,10 @@ public class SwingGUIController implements IGuiController {
         // TODO open Frame
         frame.setTitle("WaveEdit");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        frame.setSize(900, 700);
         // TODO Draw Background
         frame.setResizable(false);
-        frame.setVisible(true);
+       
 
         frame.addWindowListener(new WindowAdapter() {
 
@@ -31,6 +31,7 @@ public class SwingGUIController implements IGuiController {
         map = new SwingGUIMap();
 
         frame.getContentPane().add(map);
+        frame.setVisible(true);
         // TODO Men� zeichnen
     }
 

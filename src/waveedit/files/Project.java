@@ -74,7 +74,7 @@ public class Project {
                 fieldLines.add(fieldsInLine.toArray(new Field[x]));
                 line = br.readLine();
             }
-            gameMap = new GameMap(x, y, fieldLines.toArray(new Field[y][x]));
+            gameMap = new GameMap(fieldLines.toArray(new Field[y][x]));
         }
     }
 
@@ -82,7 +82,7 @@ public class Project {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
             int row = 0;
             writeLine(bw, row);
-            for (row = 1; row <= gameMap.getY(); row++) {
+            for (row = 1; row < gameMap.getRows(); row++) {
                 bw.newLine();
                 writeLine(bw, row);
             }
@@ -91,7 +91,7 @@ public class Project {
 
     private void writeLine(final BufferedWriter bw, final int row)
             throws IOException {
-        for (int col = 0; col < gameMap.getX(); col++) {
+        for (int col = 0; col < gameMap.getCols(); col++) {
             bw.write(gameMap.getField(col, row).toString());
         }
     }

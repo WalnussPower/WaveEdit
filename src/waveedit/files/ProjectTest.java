@@ -1,16 +1,16 @@
 package waveedit.files;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 import org.junit.Test;
 
-public class ProjectTest extends Project {
+public class ProjectTest{
 
     int[][] level = new int[][] {
             { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -44,17 +44,20 @@ public class ProjectTest extends Project {
     };
     
 
-    public ProjectTest() throws FileNotFoundException, IOException {
-        super("level.txt");
+    private Project toBeTested;
+
+    @Test
+    public void testLoad() throws IOException {
+		toBeTested = new Project("level.txt");
         for (int row = 0; row < level.length; row++) {
             System.out.println(row);
             for (int col = 0; col < level[0].length; col++) {
                 System.out.print((col+1) + "/" + level[0].length + " " + (row+1) + "/"
                         + level.length + ": ");
-                System.out.println(super.gameMap.getField(col, row) + " == "
+                System.out.println(toBeTested.gameMap.getField(col, row) + " == "
                         + level[row][col]);
                 int expected = level[row][col];
-                int found = super.gameMap.getField(col, row).getKind();
+                int found = toBeTested.gameMap.getField(col, row).getKind();
                 assertEquals(expected, found);
             }
         }
@@ -62,8 +65,8 @@ public class ProjectTest extends Project {
 
     @Test
     public void testSave() throws IOException {
-
-        save(new File("testResult.txt"));
+		toBeTested = new Project("level.txt");
+        toBeTested.save(new File("testResult.txt"));
         try (BufferedReader br = new BufferedReader(new FileReader("testResult.txt"))){
             String line;
             int cLine = 0;

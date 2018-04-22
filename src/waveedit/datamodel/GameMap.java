@@ -1,5 +1,7 @@
 package waveedit.datamodel;
 
+import waveedit.Main;
+
 public class GameMap {
 
     private Field[][] map;
@@ -19,13 +21,13 @@ public class GameMap {
         rows = pHeight;
     }
 
-    public GameMap(final int pWidth, final int pHeight, Field[][] pMap) {
-        map = new Field[pWidth][pHeight];
+    public GameMap(Field[][] pMap) {
+        map = new Field[pMap.length][];
         int cRow = 0;
         for(Field[] row: pMap){
             if(row==null)
                 throw new IllegalArgumentException("Error: provided Field[][] contains NULL-row at index "+cRow);
-            Field[] copiedRow = new Field[pWidth];
+            Field[] copiedRow = new Field[pMap[0].length];
             int i = 0;
             for(Field f: row){
                 copiedRow[i] = new Field(f.getX(), f.getY(), f.getKind());
@@ -35,27 +37,27 @@ public class GameMap {
             cRow++;
         }
         map = pMap;
-        cols = pWidth;
-        rows = pHeight;
+        cols = pMap[0].length;
+        rows = pMap.length;
     }
     
-    public int getX(){
+    public int getCols(){
         return cols;
     }
     
-    public int getY(){
+    public int getRows(){
         return rows;
     }
 
     public void setField(final int pCol, final int pRow, final int pKind) {
-        map[pCol][pRow] = new Field(pCol, pRow, pKind);
+        map[pRow][pCol] = new Field(pCol, pRow, pKind);
     }
 
     private void initialize() {
-        for (int row = 0; row <= rows; row++) {
-            for (int col = 0; col <= cols; col++) {
-                setField(col, row, Field.EMPTY);
-
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                setField(col, row, Main.EMPTY);
+                
             }
         }
     }
@@ -66,7 +68,7 @@ public class GameMap {
     }
     
     public GameMap copy(){
-        GameMap copy = new GameMap(cols, rows, map);
+        GameMap copy = new GameMap(map);
         return copy;
     }
 }

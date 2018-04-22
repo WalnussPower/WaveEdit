@@ -1,12 +1,6 @@
 package waveedit.datamodel;
 
 public class Field {
-	public static final int EMPTY = 0;
-
-	public static final int WALL = 1;
-
-	public static final int NEXUS = 2;
-
 	final private int x;
 
 	final private int y;
