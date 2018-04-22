@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import waveedit.datamodel.Field;
 import waveedit.datamodel.GameMap;
 
-public abstract class Project {
+public class Project {
 
     /**
      * The File in which the current project is and will be saved. This needs to
@@ -23,7 +23,7 @@ public abstract class Project {
     /**
      * The field in which the GameMap that is currently being edited will be
      * stored.
-     * 
+     *
      * TODO This field is set to 'protected' access to make testing easier. Set
      * this to 'private' before deployment.
      */
@@ -32,7 +32,7 @@ public abstract class Project {
     /**
      * This Constructor takes a {@link String} that contains a path to the file
      * that is to be loaded
-     * 
+     *
      * @param pFilePath
      *            The filepath
      * @throws FileNotFoundException
@@ -47,11 +47,10 @@ public abstract class Project {
         load(pFile);
     }
 
-    private void load(final File pFile)
+    public void load(final File pFile)
             throws FileNotFoundException, IOException {
         file = pFile;
-        try (FileReader fr = new FileReader(file);
-                BufferedReader br = new BufferedReader(fr)) {
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             ArrayList<Field[]> fieldLines = new ArrayList<>();
             String line = br.readLine();
             int x = -1;
@@ -68,30 +67,32 @@ public abstract class Project {
                 if (x < 0) {
                     x = curX;
                 } else if (x != curX) {
-                    throw new IOException("Error while trying to load \"" + file
+                    throw new IOException("Error while trying to load \""
+                            + file.getPath()
                             + "\": The map's horizontal length must be constant!");
                 }
                 fieldLines.add(fieldsInLine.toArray(new Field[x]));
                 line = br.readLine();
             }
             gameMap = new GameMap(x, y, fieldLines.toArray(new Field[y][x]));
-            br.close();
-            fr.close();
         }
     }
 
     public void save() throws IOException {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-            for (int row = 0; row <= gameMap.getY(); row++) {
-                for (int col = 0; col < gameMap.getX(); col++) {
-                    bw.write(gameMap.getField(col, row).toString());
-                }
-                if (gameMap.getY() == row) {
-                    break;// TODO this could be done more efficiently
-                }
+            int row = 0;
+            writeLine(bw, row);
+            for (row = 1; row <= gameMap.getY(); row++) {
                 bw.newLine();
+                writeLine(bw, row);
             }
-            bw.close();
+        }
+    }
+
+    private void writeLine(final BufferedWriter bw, final int row)
+            throws IOException {
+        for (int col = 0; col < gameMap.getX(); col++) {
+            bw.write(gameMap.getField(col, row).toString());
         }
     }
 
@@ -102,12 +103,12 @@ public abstract class Project {
         file = pFile;
         save();
     }
-    
-    public void setField(final int pCol, final int pRow, final int pKind){
+
+    public void setField(final int pCol, final int pRow, final int pKind) {
         gameMap.setField(pCol, pRow, pKind);
     }
-    
-    public int getField(final int pCol, final int pRow){
+
+    public int getField(final int pCol, final int pRow) {
         return gameMap.getField(pCol, pRow).getKind();
     }
 
